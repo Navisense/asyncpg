@@ -365,10 +365,12 @@ cdef class BaseProtocol(CoreProtocol):
                 # the last CopyData message.
                 if buffer:
                     try:
+                        print('waiting for sink')
                         with timer:
                             await asyncio.wait_for(
                                 sink(buffer),
                                 timeout=timer.get_remaining_budget())
+                        print('sink done')
                     except (Exception, asyncio.CancelledError) as ex:
                         # Abort the COPY operation on any error in
                         # output sink.

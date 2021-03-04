@@ -401,6 +401,7 @@ cdef class CoreProtocol:
         self.result_status_msg = msg
 
     cdef _parse_copy_data_msgs(self):
+        print('received CopyData')
         cdef:
             ReadBuffer buf = self.buffer
 
